@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Mascot 3D Showcase — เลือกแบรนด์สื่อสุขภาพ</title>
+<title>Mascot Atelier — เลือกแบรนด์สื่อสุขภาพ</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -47,7 +47,7 @@ nav{position:fixed;left:50%;transform:translateX(-50%);top:clamp(64px,10vh,86px)
   display:flex;gap:4px;padding:4px;border-radius:999px;background:var(--panel);
   backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line)}
 nav button{appearance:none;border:0;background:transparent;color:var(--ink2);font:inherit;font-size:13.5px;
-  font-weight:400;padding:8px 16px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;white-space:nowrap}
+  font-weight:400;padding:8px 14px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s;white-space:nowrap}
 nav button:hover{color:var(--ink)}
 nav button[aria-selected="true"]{background:var(--brand);color:#fff;font-weight:500}
 nav button:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
@@ -162,7 +162,7 @@ nav button:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
 <div id="stage"></div>
 
 <header>
-  <div class="title">Mascot 3D Showcase<small>4 ทางเลือกแบรนด์สื่อสุขภาพ สำหรับผู้บริหารพิจารณา</small></div>
+  <div class="title">Mascot Atelier<small>5 ทางเลือกแบรนด์สื่อสุขภาพ สำหรับผู้บริหารพิจารณา</small></div>
   <div class="hint">ลากเพื่อหมุน · เลื่อนล้อเมาส์เพื่อซูม · แตะสีเพื่อทดลองโทน</div>
 </header>
 
@@ -198,6 +198,21 @@ nav button:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
 <script>
 /* ---------- Brand data (from the reference boards) ---------- */
 const BRANDS = [
+ { id:'station', name:'สน.สุขภาพ', sub:'สถานีสุขภาพ · แจ้งเรื่องสุขภาพได้ที่นี่ 24 ชม.',
+   desc:'ตำรวจตรวจสุขภาพ "จ่าเช็ก" ในเครื่องแบบสีกากี หมวกทรงหม้อตาล ตราเข็มกลัดทอง ถือหูฟังแพทย์ ดูแล ตรวจสอบ คุ้มครองสุขภาพทุกคน',
+   tags:['น่าเชื่อถือ','มีวินัย','ดูแลทุกคน','เป็นมิตร'],
+   palette:[['น้ำเงินเข้ม',0x0D2B5C],['กากี',0xC9A66B],['แดงไซเรน',0xD63A3A],['ทองตรา',0xE8B84A],['ขาว',0xF4F1EA]],
+   parts:{ body:0x0D2B5C, accent:0xE8B84A, extra:0xC9A66B }, build:buildStation },
+ { id:'check', name:'เช็กชัวร์สุขภาพ', sub:'ไวรัลได้ แต่สุขภาพต้องชัวร์',
+   desc:'โล่เช็กชัวร์ถือแว่นขยาย เชื่อถือได้ อ่านง่าย ดูเป็นทางการ',
+   tags:['น่าเชื่อถือ','ทันสมัย','เป็นมิตร'],
+   palette:[['น้ำเงิน',0x1F4FB3],['เขียว',0x2FB37A],['มิ้นต์',0x7EE3B0],['ครีม',0xF7E6A9],['แดง',0xF05A63]],
+   parts:{ body:0x1F4FB3, accent:0x2FB37A, extra:0xF7E6A9 }, build:buildShield },
+ { id:'hdyh', name:'How Do You Health?', sub:'แล้วคุณล่ะ ดูแลสุขภาพยังไง?',
+   desc:'พื้นที่ชวนคุยเรื่องสุขภาพในชีวิตจริง เครื่องหมายคำถามคือจุดเริ่มต้นของบทสนทนา',
+   tags:['Curious','Conversational','Smart','Credible'],
+   palette:[['Cobalt Blue',0x3157D5],['Lilac',0xB8A5E8],['Acid Lime',0xD7F05A],['Soft White',0xF7F7F2],['Deep Ink',0x20243A]],
+   parts:{ body:0x3157D5, accent:0xD7F05A, extra:0xB8A5E8 }, build:buildQuestion },
  { id:'like', name:'ไลก์สาระ', sub:'น้องไลก์ · สุขภาพดี เริ่มได้จาก…การรู้',
    desc:'สื่อสารสุขภาพแบบง่ายๆ ที่ทุกคนกดไลก์ได้ เด็กหมวกน้ำเงินยกนิ้วโป้ง สดใส เป็นมิตร ทันสมัย',
    tags:['น่ารัก เป็นมิตร','ฉลาด รู้จริง','กดไลก์ได้'],
@@ -208,16 +223,6 @@ const BRANDS = [
    tags:['Smart','Friendly','Modern','Fun','Credible'],
    palette:[['Deep Plum',0x4B274F],['Butter Yellow',0xF4D96B],['Warm Ivory',0xF8F4EC],['Charcoal',0x29252A]],
    parts:{ body:0x4B274F, accent:0xF4D96B, extra:0xF8F4EC }, build:buildSukjung },
- { id:'hdyh', name:'How Do You Health?', sub:'แล้วคุณล่ะ ดูแลสุขภาพยังไง?',
-   desc:'พื้นที่ชวนคุยเรื่องสุขภาพในชีวิตจริง เครื่องหมายคำถามคือจุดเริ่มต้นของบทสนทนา',
-   tags:['Curious','Conversational','Smart','Credible'],
-   palette:[['Cobalt Blue',0x3157D5],['Lilac',0xB8A5E8],['Acid Lime',0xD7F05A],['Soft White',0xF7F7F2],['Deep Ink',0x20243A]],
-   parts:{ body:0x3157D5, accent:0xD7F05A, extra:0xB8A5E8 }, build:buildQuestion },
- { id:'check', name:'เช็กชัวร์สุขภาพ', sub:'ไวรัลได้ แต่สุขภาพต้องชัวร์',
-   desc:'โล่เช็กชัวร์ถือแว่นขยาย เชื่อถือได้ อ่านง่าย ดูเป็นทางการ',
-   tags:['น่าเชื่อถือ','ทันสมัย','เป็นมิตร'],
-   palette:[['น้ำเงิน',0x1F4FB3],['เขียว',0x2FB37A],['มิ้นต์',0x7EE3B0],['ครีม',0xF7E6A9],['แดง',0xF05A63]],
-   parts:{ body:0x1F4FB3, accent:0x2FB37A, extra:0xF7E6A9 }, build:buildShield },
 ];
 
 const DETAILS = {
@@ -258,6 +263,19 @@ const DETAILS = {
   visual:'Conversation visual: Person (คนทั่วไป) ↔ Expert (ผู้เชี่ยวชาญ) · The key visual element: เครื่องหมายคำถามที่เป็นมากกว่าคำถาม คือจุดเริ่มต้นของการสนทนา ความเข้าใจ และการลงมือทำ',
   formats:[['TikTok / Reel cover',''],['Interview / Talk show title card',''],['Social media post',''],['Infographic',''],['Quote card',''],['Video end card',''],['Podcast / Conversation visual','']],
   tagline:'สุขภาพที่ดี…เริ่มจากคำถามของคนจริงๆ'
+ },
+ station: {
+  quote:'“เรื่องสุขภาพ แจ้ง สน.สุขภาพ ได้ทุกเรื่อง”',
+  concept:'เปลี่ยนสถานีตำรวจให้เป็นสถานีสุขภาพ ที่ประชาชนแวะมา "แจ้งความ" เรื่องอาการ ข้อสงสัย และข่าวลวงสุขภาพได้เหมือนแจ้งเหตุ มีเจ้าหน้าที่ตรวจสอบข้อเท็จจริง ให้คำตอบที่ถูกต้อง และคุ้มครองสุขภาพของทุกคนในชุมชน · Positioning: หน่วยงานสุขภาพที่น่าเชื่อถือ มีวินัย แต่เข้าถึงง่ายและเป็นมิตร',
+  keywords:['น่าเชื่อถือ','มีวินัย','ตรวจสอบได้','ดูแลทุกคน','เป็นมิตร'],
+  theme:'โทนน้ำเงินเข้มเดียวกับไลก์สาระ · ฟีลสถานีตำรวจ: รับแจ้ง · ตรวจสอบ · คุ้มครอง',
+  palette:[['น้ำเงินเข้ม · ความน่าเชื่อถือ','#0D2B5C'],['กากี · เครื่องแบบ','#C9A66B'],['แดงไซเรน · เตือนภัยสุขภาพ','#D63A3A'],['ทองตรา · เกียรติ ความถูกต้อง','#E8B84A'],['ขาว · สะอาด ชัดเจน','#F4F1EA']],
+  mascot:{name:'จ่าเช็ก',traits:['เครื่องแบบกากี หมวกทรงหม้อตาล','ตราดาวทองบนหมวกและอก','ถือหูฟังแพทย์ + แฟ้มบันทึกสุขภาพ','ท่าวันทยหัตถ์ ทักทายเป็นมิตร','ไฟไซเรนแดง = สัญญาณเตือนสุขภาพ']},
+  dna:[['รับแจ้ง (REPORT)','เปิดรับคำถาม อาการ ข่าวลือสุขภาพจากประชาชน'],['ตรวจสอบ (CHECK)','ตรวจข้อเท็จจริงกับผู้เชี่ยวชาญ ก่อนตอบทุกครั้ง'],['คุ้มครอง (PROTECT)','เตือนภัยสุขภาพ ข่าวลวง และพฤติกรรมเสี่ยง'],['ดูแล (CARE)','แนะนำวิธีดูแลตัวเองที่ทำได้จริงในชีวิตประจำวัน']],
+  flow:['แจ้งเหตุ','สืบสวน','ชี้แจง','ปิดคดี'], flowTitle:'Content journey (ภาษาสถานี)',
+  visual:'สัญลักษณ์หลักคือตราดาวทองในวงกลม (ตราสถานี) ใช้ประทับบนภาพ "ตรวจสอบแล้ว" · ไฟไซเรนแดงใช้เป็นแท็กเตือนภัยสุขภาพ/ข่าวลวง · โทนกรมท่า-กากีให้ความรู้สึกเป็นทางการ ตัดด้วยตัวการ์ตูนหน้ายิ้มให้เข้าถึงง่าย',
+  formats:[['คลิป "รับแจ้งเหตุ"','ตอบคำถามสุขภาพจากประชาชนแบบสั้นๆ'],['รายการ "สืบคดีสุขภาพ"','ตรวจสอบข่าวลวง / ความเชื่อผิดๆ กับผู้เชี่ยวชาญ'],['ป้าย "ประกาศจับ"','อินโฟกราฟิกพฤติกรรมเสี่ยงที่ต้องเลิก'],['ไลฟ์ "สายด่วนสถานี"','ถาม-ตอบสดกับหมอและ อสม.'],['ตราประทับ "ตรวจสอบแล้ว"','ใช้กำกับคอนเทนต์ที่ผ่านการเช็กข้อเท็จจริง']],
+  tagline:'สุขภาพดี มีคนดูแล · แจ้ง สน.สุขภาพ'
  },
  check: {
   quote:'“ไวรัลได้ แต่สุขภาพต้องชัวร์”',
@@ -493,6 +511,66 @@ function buildShield(){
   return g;
 }
 
+/* ---------- Mascot 5: จ่าเช็ก (health police officer) ---------- */
+function buildStation(){
+  const g = new THREE.Group();
+  const navy = tag(mat(0x0D2B5C,{roughness:0.6}), 'body'), gold = tag(mat(0xE8B84A,{roughness:0.3,metalness:0.35}), 'accent'), khaki = tag(mat(0xC9A66B,{roughness:0.75}), 'extra');
+  const skin = mat(SKIN,{roughness:0.8}), red = mat(0xD63A3A,{roughness:0.5}), white = mat(0xF4F1EA,{roughness:0.6});
+  // legs, boots
+  const legL = capsule(0.2,0.5, navy); legL.position.set(-0.28,-1.2,0); g.add(legL);
+  const legR = capsule(0.2,0.5, navy); legR.position.set(0.28,-1.2,0); g.add(legR);
+  mesh(new THREE.SphereGeometry(0.25,16,16), mat(0x2A2A30,{roughness:0.4}), -0.3,-1.62,0.1, g).scale.set(1,0.55,1.35);
+  mesh(new THREE.SphereGeometry(0.25,16,16), mat(0x2A2A30,{roughness:0.4}), 0.3,-1.62,0.1, g).scale.set(1,0.55,1.35);
+  // khaki shirt + belt
+  const torso = capsule(0.64, 0.55, khaki); torso.position.set(0,-0.55,0); g.add(torso);
+  mesh(new THREE.CylinderGeometry(0.66,0.66,0.14,32), navy, 0,-0.95,0, g);
+  mesh(new THREE.BoxGeometry(0.22,0.16,0.08), gold, 0,-0.95,0.62, g);
+  // pocket lines + badge (star)
+  mesh(new THREE.BoxGeometry(0.02,0.9,0.02), mat(0xA98A55), 0,-0.45,0.65, g);
+  const star = new THREE.Shape(); for(let i=0;i<10;i++){ const r=i%2?0.07:0.16, a=i*Math.PI/5-Math.PI/2; i?star.lineTo(Math.cos(a)*r,Math.sin(a)*r):star.moveTo(Math.cos(a)*r,Math.sin(a)*r);} star.closePath();
+  mesh(new THREE.ExtrudeGeometry(star,{depth:0.05,bevelEnabled:false}), gold, -0.3,-0.35,0.62, g);
+  // epaulettes
+  mesh(new THREE.BoxGeometry(0.34,0.07,0.2), navy, -0.55,-0.12,0.05, g).rotation.z=0.2;
+  mesh(new THREE.BoxGeometry(0.34,0.07,0.2), navy, 0.55,-0.12,0.05, g).rotation.z=-0.2;
+  mesh(new THREE.SphereGeometry(0.05,8,8), gold, -0.6,-0.09,0.14, g);
+  mesh(new THREE.SphereGeometry(0.05,8,8), gold, 0.6,-0.09,0.14, g);
+  // stethoscope around neck
+  const tube = mesh(new THREE.TorusGeometry(0.5,0.04,8,32,Math.PI*1.1), mat(0x2A2A30), 0,-0.15,0.35, g); tube.rotation.z=Math.PI+0.05; tube.rotation.x=0.3;
+  mesh(new THREE.CylinderGeometry(0.11,0.11,0.06,20), mat(0xB9BEC8,{roughness:0.25,metalness:0.6}), 0.45,-0.62,0.6, g).rotation.x=Math.PI/2;
+  // arms: left down holding clipboard, right saluting
+  const armL = capsule(0.16,0.5, khaki); armL.position.set(-0.82,-0.5,0.1); armL.rotation.z=0.3; g.add(armL);
+  mesh(new THREE.SphereGeometry(0.2,16,16), skin, -0.95,-0.85,0.15, g);
+  const board = mesh(new THREE.BoxGeometry(0.42,0.55,0.04), white, -1.1,-0.7,0.42, g); board.rotation.y=0.3;
+  mesh(new THREE.BoxGeometry(0.16,0.06,0.06), navy, -1.1,-0.42,0.44, g).rotation.y=0.3;
+  const chk = new THREE.Group(); chk.position.set(-1.12,-0.72,0.46); chk.rotation.y=0.3; g.add(chk);
+  mesh(new THREE.BoxGeometry(0.05,0.14,0.02), red, -0.06,-0.03,0, chk).rotation.z=-0.75;
+  mesh(new THREE.BoxGeometry(0.05,0.24,0.02), red, 0.04,0.02,0, chk).rotation.z=0.7;
+  const armR = capsule(0.16,0.5, khaki); armR.position.set(0.85,-0.2,0.25); armR.rotation.z=-2.1; armR.rotation.x=-0.3; g.add(armR);
+  const hand = mesh(new THREE.SphereGeometry(0.2,16,16), skin, 0.62,0.55,0.55, g); hand.scale.set(1.2,0.6,1);
+  // head
+  const head = mesh(new THREE.SphereGeometry(0.95,32,32), skin, 0,0.75,0, g); head.scale.set(1,0.95,0.95);
+  face(g, 0.68, 0.86, 1, 1, false);
+  // hair sides
+  const hair = mat(0x2A2A30,{roughness:0.8});
+  mesh(new THREE.SphereGeometry(0.3,16,16), hair, -0.82,0.7,-0.1, g).scale.set(0.7,1.1,0.8);
+  mesh(new THREE.SphereGeometry(0.3,16,16), hair, 0.82,0.7,-0.1, g).scale.set(0.7,1.1,0.8);
+  // peaked cap (หมวกทรงหม้อตาล): band, crown, visor, badge
+  mesh(new THREE.CylinderGeometry(1.0,0.98,0.26,32), navy, 0,1.28,-0.02, g);
+  mesh(new THREE.TorusGeometry(0.98,0.05,8,48), red, 0,1.16,-0.02, g).rotation.x=Math.PI/2;
+  const crown = mesh(new THREE.SphereGeometry(1.08,32,32,0,Math.PI*2,0,Math.PI*0.5), navy, 0,1.35,-0.1, g); crown.scale.set(1,0.55,1);
+  const visor = mesh(new THREE.CylinderGeometry(0.92,0.92,0.07,32,1,false,-Math.PI*0.42,Math.PI*0.84), mat(0x111318,{roughness:0.25}), 0,1.16,0.05, g);
+  visor.scale.set(1.15,1,1.5); visor.rotation.x=0.18;
+  mesh(new THREE.ExtrudeGeometry(star,{depth:0.05,bevelEnabled:false}), gold, 0,1.3,0.98, g).scale.set(1.5,1.5,1);
+  mesh(new THREE.TorusGeometry(0.26,0.035,8,32), gold, 0,1.3,0.97, g);
+  // red siren light (health alert) on the cap top
+  mesh(new THREE.CylinderGeometry(0.12,0.14,0.08,16), mat(0x2A2A30), 0,1.9,-0.1, g);
+  mesh(new THREE.SphereGeometry(0.13,16,16,0,Math.PI*2,0,Math.PI*0.5), mat(0xD63A3A,{roughness:0.2,transparent:true,opacity:0.9}), 0,1.94,-0.1, g);
+  // gold sparks
+  const spark = new THREE.Mesh(new THREE.BoxGeometry(0.06,0.32,0.06), gold);
+  [[1.5,1.6,0,-0.5],[1.3,1.9,0,0],[1.7,1.25,0,-1.0]].forEach(([x,y,z,r])=>{ const sp=spark.clone(); sp.position.set(x,y,z); sp.rotation.z=r; g.add(sp); });
+  return g;
+}
+
 /* ---------- state & UI ---------- */
 let cur = 0, curPart = 'body', autoSpin = true, lastInteract = 0;
 const tabs = document.getElementById('tabs'), info = document.getElementById('info'),
@@ -559,7 +637,7 @@ function esc(x){return String(x).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','
 function renderSheet(){
   const b=BRANDS[cur], d=DETAILS[b.id]; let h=`<h2>${esc(b.name)}<span>${esc(b.sub)}</span></h2>`;
   h+=`<div class="quote">${esc(d.quote)}</div>`;
-  h+=`<section><h3>ภาพต้นฉบับ</h3><button class="ref" type="button" aria-label="เปิดภาพต้นฉบับขนาดใหญ่"><img src="${REFS[b.id]}" alt="อินโฟกราฟิกต้นฉบับ ${esc(b.name)}" loading="lazy"></button><div class="refcap">แตะภาพเพื่อดูขนาดเต็ม</div></section>`;
+  if(REFS[b.id]) h+=`<section><h3>ภาพต้นฉบับ</h3><button class="ref" type="button" aria-label="เปิดภาพต้นฉบับขนาดใหญ่"><img src="${REFS[b.id]}" alt="อินโฟกราฟิกต้นฉบับ ${esc(b.name)}" loading="lazy"></button><div class="refcap">แตะภาพเพื่อดูขนาดเต็ม</div></section>`;
   h+=`<section><h3>แนวคิดแบรนด์</h3><p>${esc(d.concept)}</p></section>`;
   h+=`<section><h3>คีย์เวิร์ด / บุคลิกแบรนด์</h3><div class="chips">${d.keywords.map(k=>`<i class="on">${esc(k)}</i>`).join('')}</div>${d.theme?`<p style="margin-top:8px">${esc(d.theme)}</p>`:''}</section>`;
   h+=`<section><h3>โทนสี</h3><div class="pal">${d.palette.map(([n,c])=>`<div><span style="background:${c}"></span>${esc(n)}<br><code>${c}</code></div>`).join('')}</div></section>`;
@@ -572,7 +650,7 @@ function renderSheet(){
   if(d.formats) h+=`<section><h3>รูปแบบคอนเทนต์ / การใช้งาน</h3><ul>${d.formats.map(([k,v])=>`<li><b>${esc(k)}</b>${v?`<span>${esc(v)}</span>`:''}</li>`).join('')}</ul></section>`;
   h+=`<section><h3>แท็กไลน์</h3><p>${esc(d.tagline)}</p></section>`;
   sheetBody.innerHTML=h;
-  sheetBody.querySelector('.ref').addEventListener('click', ()=>openLightbox(REFS[b.id], b.name));
+  const refBtn=sheetBody.querySelector('.ref'); if(refBtn) refBtn.addEventListener('click', ()=>openLightbox(REFS[b.id], b.name));
 }
 const lb=document.getElementById('lightbox'), lbImg=lb.querySelector('img');
 function openLightbox(src,name){ lbImg.src=src; lbImg.alt='อินโฟกราฟิกต้นฉบับ '+name; lb.dataset.open='true'; }
